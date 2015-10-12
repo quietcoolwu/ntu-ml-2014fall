@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import numpy as np
-import svmutil, svm
+
+import svmutil
+
 
 def readdat():
     with open("features.train", "r") as f:
@@ -49,7 +51,7 @@ def prob15():
             else: t.append(0)
         sv.append(t)
     w = np.dot(np.array(sv).T, np.array(sv_coef))
-    print "prob15: |w| = %f" % np.sqrt(w[0]**2 + w[1]**2)
+    print("prob15: |w| = %f" % np.sqrt(w[0] ** 2 + w[1] ** 2))
 
 def prob1617():
     Ein = []
@@ -70,9 +72,9 @@ def prob1617():
             sigma_alpha))
 
     for s in Ein:
-        print s
+        print(s)
     for s in alpha:
-        print s
+        print(s)
 
 def prob18():
     ans = {'dist':[], 'xi':[], 'n_sv': [], 'Eout': []}
@@ -130,12 +132,12 @@ def prob18():
     #print ans
 
     for i in range(len(C)):
-        print "prob18: c=%f," % (C[i]),
-        for k in ans.keys():
-            print "%s=%f" % (k, ans[k][i]),
-        print ""
-    print """objective value is printed in the libsvm verbose as obj, from the
-    first verbose to the last one is c = 0.001, 0.01, 0.1, 1, 10"""
+        print("prob18: c=%f," % (C[i]), end=' ')
+        for k in list(ans.keys()):
+            print("%s=%f" % (k, ans[k][i]), end=' ')
+        print("")
+    print("""objective value is printed in the libsvm verbose as obj, from the
+    first verbose to the last one is c = 0.001, 0.01, 0.1, 1, 10""")
 
 def prob19():
     gamma = [1, 10, 100, 1000, 10000]
@@ -150,7 +152,7 @@ def prob19():
         Eout.append("prob19: gamma=%d Eout=%f%%" % (g, 100.0 - p_acc[0]))
 
     for e in Eout:
-        print e
+        print(e)
 
 def prob20():
     import random
@@ -162,9 +164,9 @@ def prob20():
             trainX, testX, trainy, testy = readdat()
             mul_label_2_bin(trainy, testy, 0)
 
-            trainX = zip(trainX, trainy)
+            trainX = list(zip(trainX, trainy))
             random.shuffle(trainX)
-            trainX, trainy = zip(*trainX)
+            trainX, trainy = list(zip(*trainX))
             valX = trainX[:1000]
             valy = trainy[:1000]
             trainX = trainX[1000:]
@@ -175,10 +177,10 @@ def prob20():
 
             Eout.append(100.0 - p_acc[0])
         chosen[gamma[Eout.index(min(Eout))]] += 1
-    print "prob20: ",
-    for k in chosen.keys():
-        print "gamma=%d:%d, " % (k, chosen[k]),
-    print ""
+    print("prob20: ", end=' ')
+    for k in list(chosen.keys()):
+        print("gamma=%d:%d, " % (k, chosen[k]), end=' ')
+    print("")
 
 def main():
     prob15()

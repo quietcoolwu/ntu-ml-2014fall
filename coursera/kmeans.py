@@ -32,7 +32,7 @@ def prob1920():
                 break
             Ein = tEin
         results.append(Ein)
-    print "[prob19] avgEin= %f" % (np.mean(results))
+    print("[prob19] avgEin= %f" % (np.mean(results)))
 
 def main():
     prob1920()

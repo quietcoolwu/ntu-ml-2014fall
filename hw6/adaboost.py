@@ -44,7 +44,7 @@ class adaboost(object):
 
     def train(self, X, y, T):
         self.u = np.array([1.0/len(X) for i in range(len(X))])
-        for i in xrange(T):
+        for i in range(T):
             ds = decision_stump()
             err = ds.train(X, y, self.u)
             scale = np.sqrt((1-err)/err)
@@ -67,9 +67,9 @@ def prob121314():
     trainX, testX, trainy, testy = readdat()
     ada = adaboost()
     ada.train(trainX, trainy, 300)
-    print "prob12: Ein=%f" % err(ada.predict(trainX), trainy)
-    print "prob13: Eout=%f" % err(ada.predict(testX), testy)
-    print "prob14: U^T=%f" % np.sum(ada.u)
+    print("prob12: Ein=%f" % err(ada.predict(trainX), trainy))
+    print("prob13: Eout=%f" % err(ada.predict(testX), testy))
+    print("prob14: U^T=%f" % np.sum(ada.u))
 
 def prob15():
     trainX, testX, trainy, testy = readdat()
@@ -84,11 +84,11 @@ def prob15():
         einGt.append(err(ada.predict(trainX), trainy))
         eoutGt.append(err(ada.predict(testX), testy))
         Ut.append(sum(ada.u))
-    print "prob15: Ein(g_t)=", eingt
-    print "prob15: Ein(G_t)=", einGt
-    print "prob15: Eout(G_t)=", eoutGt
-    print "prob15: U^t=", Ut
-    print "prob15: alpha^t=", ada.alpha
+    print("prob15: Ein(g_t)=", eingt)
+    print("prob15: Ein(G_t)=", einGt)
+    print("prob15: Eout(G_t)=", eoutGt)
+    print("prob15: U^t=", Ut)
+    print("prob15: alpha^t=", ada.alpha)
 
 def main():
     prob121314()

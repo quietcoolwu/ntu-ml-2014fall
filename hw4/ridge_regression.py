@@ -39,10 +39,10 @@ def prob13():
     LAMBDA = 10
     trainX, testX, trainy, testy = readdat()
     w = wreg(trainX, trainy)
-    print "[prob13]Ein:",
-    print err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0])
-    print "[prob13]Eout:",
-    print err01(predict(w, testX), testy) / float(np.shape(testX)[0])
+    print("[prob13]Ein:", end=' ')
+    print(err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]))
+    print("[prob13]Eout:", end=' ')
+    print(err01(predict(w, testX), testy) / float(np.shape(testX)[0]))
     """ gradient decent
     trainX, testX, trainy, testy = readdat()
     w = np.random.random([np.shape(trainX)[1],1])
@@ -58,12 +58,12 @@ def prob1415():
     for lamb in np.power(10.0, np.arange(2, -11, -1)):
         LAMBDA = lamb
         w = wreg(trainX, trainy)
-        print "[prob14&15]log Lambda:",
-        print np.log10(LAMBDA),
-        print "Ein:",
-        print err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]),
-        print "Eout:",
-        print err01(predict(w, testX), testy) / float(np.shape(testX)[0])
+        print("[prob14&15]log Lambda:", end=' ')
+        print(np.log10(LAMBDA), end=' ')
+        print("Ein:", end=' ')
+        print(err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]), end=' ')
+        print("Eout:", end=' ')
+        print(err01(predict(w, testX), testy) / float(np.shape(testX)[0]))
 
 def prob161718():
     global LAMBDA
@@ -89,34 +89,34 @@ def prob161718():
             bestVal[1] = w
             bestVal[2] = lamb
 
-    print "[prob16]log Lambda:",
-    print np.log10(bestTrain[2]),
-    print "Etrain:",
-    print err01(predict(bestTrain[1], traX), tray) / float(np.shape(traX)[0]),
-    print "Eval:",
-    print err01(predict(bestTrain[1], valX), valy) / float(np.shape(valX)[0]),
-    print "Eout:",
-    print err01(predict(bestTrain[1], testX), testy) / float(np.shape(testX)[0])
+    print("[prob16]log Lambda:", end=' ')
+    print(np.log10(bestTrain[2]), end=' ')
+    print("Etrain:", end=' ')
+    print(err01(predict(bestTrain[1], traX), tray) / float(np.shape(traX)[0]), end=' ')
+    print("Eval:", end=' ')
+    print(err01(predict(bestTrain[1], valX), valy) / float(np.shape(valX)[0]), end=' ')
+    print("Eout:", end=' ')
+    print(err01(predict(bestTrain[1], testX), testy) / float(np.shape(testX)[0]))
 
-    print "[prob17]log Lambda:",
-    print np.log10(bestVal[2]),
-    print "Etrain:",
-    print err01(predict(bestVal[1], traX), tray) / float(np.shape(traX)[0]),
-    print "Eval:",
-    print err01(predict(bestVal[1], valX), valy) / float(np.shape(valX)[0]),
-    print "Eout:",
-    print err01(predict(bestVal[1], testX), testy) / float(np.shape(testX)[0])
+    print("[prob17]log Lambda:", end=' ')
+    print(np.log10(bestVal[2]), end=' ')
+    print("Etrain:", end=' ')
+    print(err01(predict(bestVal[1], traX), tray) / float(np.shape(traX)[0]), end=' ')
+    print("Eval:", end=' ')
+    print(err01(predict(bestVal[1], valX), valy) / float(np.shape(valX)[0]), end=' ')
+    print("Eout:", end=' ')
+    print(err01(predict(bestVal[1], testX), testy) / float(np.shape(testX)[0]))
 
     LAMBDA = bestVal[2]
     w = wreg(trainX, trainy)
     Ein = err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0])
 
-    print "[prob18]log Lambda:",
-    print np.log10(bestVal[2]),
-    print "Ein:",
-    print err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]),
-    print "Eout:",
-    print err01(predict(w, testX), testy) / float(np.shape(testX)[0])
+    print("[prob18]log Lambda:", end=' ')
+    print(np.log10(bestVal[2]), end=' ')
+    print("Ein:", end=' ')
+    print(err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]), end=' ')
+    print("Eout:", end=' ')
+    print(err01(predict(w, testX), testy) / float(np.shape(testX)[0]))
 
 def prob1920():
     #5-folds cross validation
@@ -143,23 +143,23 @@ def prob1920():
             bestLamb[1] = lamb
     w = wreg(trainX, trainy)
 
-    print "[prob19]log Lambda:",
-    print np.log10(bestLamb[1]),
-    print "Ecv:",
-    print bestLamb[0]
+    print("[prob19]log Lambda:", end=' ')
+    print(np.log10(bestLamb[1]), end=' ')
+    print("Ecv:", end=' ')
+    print(bestLamb[0])
 
-    print "[prob20]Ein:",
-    print err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]),
-    print "Eout:",
-    print err01(predict(w, testX), testy) / float(np.shape(testX)[0])
+    print("[prob20]Ein:", end=' ')
+    print(err01(predict(w, trainX), trainy) / float(np.shape(trainX)[0]), end=' ')
+    print("Eout:", end=' ')
+    print(err01(predict(w, testX), testy) / float(np.shape(testX)[0]))
 
 def main():
     prob13()
-    print "====================================================="
+    print("=====================================================")
     prob1415()
-    print "====================================================="
+    print("=====================================================")
     prob161718()
-    print "====================================================="
+    print("=====================================================")
     prob1920()
 
 if __name__ == '__main__':

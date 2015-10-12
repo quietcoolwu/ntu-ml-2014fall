@@ -1,7 +1,8 @@
+import multiprocessing as mp
+import random
 
 import numpy as np
-import multiprocessing as mp
-import random, itertools
+
 
 def readdat():
     with open("hw6_train.dat", "r") as f:
@@ -99,23 +100,23 @@ def prob161718():
     trainX, testX, trainy, testy = readdat()
     root = Node()
     build_tree(root, trainX, trainy)
-    print "prob16: num of branch functions = %d" % branch_funcs
+    print("prob16: num of branch functions = %d" % branch_funcs)
     pred = []
     for x in trainX:
         pred.append(predict_tree(root, np.array([x])))
     Ein = float(np.sum(np.array(pred)!=trainy)) / len(trainy)
-    print "prob17: Ein = %f" % Ein
+    print("prob17: Ein = %f" % Ein)
     pred = []
     for x in testX:
         pred.append(predict_tree(root, np.array([x])))
     Eout = float(np.sum(np.array(pred)!=testy)) / len(testy)
-    print "prob18: Eout = %f" % Eout
+    print("prob18: Eout = %f" % Eout)
 
 def buildForest(N, X, y):
     ret = []
     for i in range(N):
         ret.append(Node())
-        sample = [random.choice(range(len(y))) for i in range(len(y))]
+        sample = [random.choice(list(range(len(y)))) for i in range(len(y))]
         build_tree(ret[-1], X[sample], y[sample])
     return re
 
@@ -130,7 +131,7 @@ def predictForest(forest, X):
 
 def expRF(trainX, trainy, testX, testy):
     forest = buildForest(300, trainX, trainy)
-    print "finish building forest"
+    print("finish building forest")
     pred = predictForest(forest, testX)
     """
     pred = []
@@ -152,7 +153,7 @@ def prob19():
     eouts = pool.map(mapExpRF, [(trainX, trainy, testX, testy)]*100)
     #for k in range(100):
     #    eouts.append(expRF(trainX, trainy, testX, testy))
-    print "prob19: average Eout = %f" % (sum(eouts) / float(len(eouts)))
+    print("prob19: average Eout = %f" % (sum(eouts) / float(len(eouts))))
 
 def prob20():
     eoutgt = [0.0] * 300
@@ -167,7 +168,7 @@ def prob20():
         for i in range(num_of_tree):
             #print i
             forest.append(Node())
-            sample = [random.choice(range(len(trainy))) for j in range(len(trainy))]
+            sample = [random.choice(list(range(len(trainy)))) for j in range(len(trainy))]
             build_tree(forest[-1], trainX[sample], trainy[sample])
 
             pred = [predict_tree(forest[-1], np.array([x])) for x in testX]
@@ -178,10 +179,10 @@ def prob20():
             err = float(np.sum(np.array(pred)!=testy)) / len(testy)
             eoutGt[i] += err / num_of_exp
             eoutGt2[i] += err**2 / num_of_exp
-    print "prob20: average Eout(g_t): ", eoutgt
-    print "prob20: average Eout(G_t): ", eoutGt
-    print "prob20: variance Eout(G_t): ", (np.array(eoutGt2) -\
-            np.array(eoutGt)**2).tolist()
+    print("prob20: average Eout(g_t): ", eoutgt)
+    print("prob20: average Eout(G_t): ", eoutGt)
+    print("prob20: variance Eout(G_t): ", (np.array(eoutGt2) - \
+                                           np.array(eoutGt) ** 2).tolist())
 
 def main():
     prob161718()

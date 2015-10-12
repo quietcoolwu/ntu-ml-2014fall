@@ -27,7 +27,7 @@ def quiz13():
         w = np.dot(np.dot(np.linalg.inv(np.dot(X.T, X)), X.T), y)
         avg_err += err01(predict(w, X), y) / 1000.0
     avg_err /= 1000.0
-    print("quiz 13: avg 01Ein: %f" % avg_err)
+    print(("quiz 13: avg 01Ein: %f" % avg_err))
 
 def quiz14():
     X, y = gen_data(1000)
@@ -41,7 +41,7 @@ def quiz14():
 
     print('quiz 14:')
     for s, w in zip(['a', 'b', 'c', 'd', 'e'], ws):
-        print(s + ' ' + str(err01(predict(w, X), y) / 1000.0))
+        print((s + ' ' + str(err01(predict(w, X), y) / 1000.0)))
 
 def quiz15():
     avg_err = 0
@@ -55,7 +55,7 @@ def quiz15():
         X_test = dat_transform(X_test)
         avg_err += err01(predict(w, X_test), y_test) / 1000.0
     avg_err /= 1000.0
-    print('quiz 15: avg 01Eout is %f' % avg_err)
+    print(('quiz 15: avg 01Eout is %f' % avg_err))
 
 def main():
     quiz13()

@@ -1,39 +1,44 @@
 #!/usr/bin/python
-import numpy as np
 import random
+
+import numpy as np
+
 
 class Pocket():
     def __init__(self, init_w, eta=1.0):
         self.w = init_w
         self.best_w = init_w
         self.eta = eta
-        
+
     def _sign(self, x):
         if x > 0:
             return 1
-        else: return -1
+        else:
+            return -1
 
     def _list_sign(self, x):
         ret = []
         for i in x:
-            if i > 0.0: ret.append(1)
-            else: ret.append(-1)
+            if i > 0.0:
+                ret.append(1)
+            else:
+                ret.append(-1)
         return ret
 
     def _error(self, yp, y):
         return sum(np.array(yp) != np.array(y))
 
     def train(self, X, y, iterations):
-        for i in xrange(iterations):
+        for i in range(iterations):
             update = False
 
-            t1 = zip(X, y)
+            t1 = list(zip(X, y))
             random.shuffle(t1)
-            X, y = zip(*t1)
+            X, y = list(zip(*t1))
             X = list(X)
             y = list(y)
 
-            for j in xrange(len(X)):
+            for j in range(len(X)):
                 x = X[j]
                 _y = y[j]
                 if self._sign(np.dot(self.w, np.array(x))) != _y:
@@ -41,11 +46,11 @@ class Pocket():
                     update = True
                     if self._error(self.predict(X, self.w), y) < self._error(self.predict(X, self.best_w), y):
                         self.best_w = self.w
-                    #print x, self.w
+                    # print x, self.w
                     break
             if update == False:
                 break
-    
+
     def predict(self, X, w):
         return self._list_sign(np.array(X).dot(np.transpose(w)))
 
@@ -58,9 +63,11 @@ def exp1819(X, y, X_test, y_test):
         pocket.train(X, y, 50)
         ans18 += pocket._error(pocket.predict(X_test, pocket.best_w), y_test) / float(len(X_test))
         ans19 += pocket._error(pocket.predict(X_test, pocket.w), y_test) / float(len(X_test))
-    print pocket.w, pocket.best_w
-    print("[18]testing error %f" % (ans18 / 2000.0))
-    print("[19]testing error %f" % (ans19 / 2000.0))
+    # print
+    # pocket.w, pocket.best_w
+    print(("[18]testing error %f" % (ans18 / 2000.0)))
+    print(("[19]testing error %f" % (ans19 / 2000.0)))
+
 
 def exp20(X, y, X_test, y_test):
     ans = 0
@@ -68,7 +75,8 @@ def exp20(X, y, X_test, y_test):
         pocket = Pocket(np.array([0] * np.shape(X)[1]))
         pocket.train(X, y, 100)
         ans += pocket._error(pocket.predict(X_test, pocket.best_w), y_test) / float(len(X_test))
-    print("[20]testing error %f" % (ans / 2000.0))
+    print(("[20]testing error %f" % (ans / 2000.0)))
+
 
 def main():
     X = []

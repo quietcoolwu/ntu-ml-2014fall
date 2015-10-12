@@ -40,8 +40,8 @@ def quiz18():
         w = w - eta * err_grad(w, trainX, trainy)
         #print cross_entropy_err(w, trainX, trainy)
     #print h(w, testX)
-    print("quiz 18: zero-one error on test set: %f(eta=0.001)" %
-            zo_error(predict(w, testX), testy))
+    print(("quiz 18: zero-one error on test set: %f(eta=0.001)" %
+           zo_error(predict(w, testX), testy)))
 
 def quiz19():
     eta = 0.01
@@ -52,8 +52,8 @@ def quiz19():
         w = w - eta * err_grad(w, trainX, trainy)
         #print cross_entropy_err(w, trainX, trainy)
     #print h(w, testX)
-    print("quiz 19: zero-one error on test set: %f(eta=0.01)" %
-            zo_error(predict(w, testX), testy))
+    print(("quiz 19: zero-one error on test set: %f(eta=0.01)" %
+           zo_error(predict(w, testX), testy)))
 
 def quiz20():
     #sgd
@@ -66,9 +66,9 @@ def quiz20():
             w = w - eta * err_grad(w, trainX[j], trainy)
         #print cross_entropy_err(w, trainX, trainy)
     #print h(w, testX)
-    print("quiz 20(pick example in cyclic order):"),
-    print("zero-one error on test set: %f" %
-            zo_error(predict(w, testX), testy))
+    print(("quiz 20(pick example in cyclic order):"), end=' ')
+    print(("zero-one error on test set: %f" %
+           zo_error(predict(w, testX), testy)))
 
 def main():
     quiz18()

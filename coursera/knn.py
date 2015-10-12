@@ -25,8 +25,8 @@ def prob1516():
                 key=lambda ent: ent[1])[0][0]
         pred.append(trainy[predi])
 
-    print "[prob15] Ein = %lf" % (np.sum(np.array(pred) != np.array(trainy)) /
-            float(len(trainy)))
+    print("[prob15] Ein = %lf" % (np.sum(np.array(pred) != np.array(trainy)) /
+                                  float(len(trainy))))
 
     pred = []
     for x in testX:
@@ -34,8 +34,8 @@ def prob1516():
                 key=lambda ent: ent[1])[0][0]
         pred.append(trainy[predi])
 
-    print "[prob16] Eout = %lf" % (np.sum(np.array(pred) != np.array(testy)) /
-            float(len(testy)))
+    print("[prob16] Eout = %lf" % (np.sum(np.array(pred) != np.array(testy)) /
+                                   float(len(testy))))
 
 def prob1718():
     trainX, testX, trainy, testy = readdat()
@@ -48,8 +48,8 @@ def prob1718():
             predi += trainy[p[0]]
         pred.append(np.sign(predi))
 
-    print "[prob17] Ein = %lf" % (np.sum(np.array(pred) != np.array(trainy)) /
-            float(len(trainy)))
+    print("[prob17] Ein = %lf" % (np.sum(np.array(pred) != np.array(trainy)) /
+                                  float(len(trainy))))
 
     pred = []
     for x in testX:
@@ -60,8 +60,8 @@ def prob1718():
             predi += trainy[p[0]]
         pred.append(np.sign(predi))
 
-    print "[prob18] Eout = %lf" % (np.sum(np.array(pred) != np.array(testy)) /
-            float(len(testy)))
+    print("[prob18] Eout = %lf" % (np.sum(np.array(pred) != np.array(testy)) /
+                                   float(len(testy))))
 
 def main():
     prob1516()
